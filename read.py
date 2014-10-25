@@ -57,9 +57,8 @@ def read_files(files):
     return fcontents
 
 def write(data, fname):
+    """ Write data dictionary to csv. """
     with open(file, "wb") as f:
         writer = csv.writer(f, delimiter=',')
         for line in data:
             writer.writerow(line)
-
-read_files(get_filenames())
