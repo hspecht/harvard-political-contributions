@@ -3,7 +3,7 @@
 #
 
 # directory names
-data.path    <- "data"
+data.path    <- "raw_data"
 header.path  <- "header"
 # data filenames
 indiv.fname  <- "itcont.txt"
