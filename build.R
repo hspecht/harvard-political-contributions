@@ -9,8 +9,6 @@ header.path  <- "header"
 indiv.fname  <- "itcont.txt"
 cm.fname     <- "cm.txt"
 cn.fname     <- "cn.txt"
-# file to write data
-output.fname <- "harvard_pol_contribs.csv"
 
 set.headers <- function() {
     ## Read in header files and define global variables
@@ -56,16 +54,8 @@ read.data <- function(year_dir) {
 
 read.all <- function() {
     set.headers()
-    ## Create new global 'harvard' data frame with data from 2001 - 2014
-    # instantiate global data frame with data from 2013-2014
-    harvard <<- read.data("13-14")
-    # read and merge other year dirs
-    for (i in seq(12, 2, -2)) {
-        # generate directory name
+    for (i in seq(14, 2, -2)) {
         year_dir <- paste(as.character(i-1), as.character(i), sep="-")
-        # append new data frame to global data frame
-        print("combining into global data frame")
-        harvard <<- rbind(harvard, read.data(year_dir))
+        write.csv(read.data(year_dir), paste(year_dir, "csv", sep="."))
     }
-    write.csv(harvard, output.fname)
 }
