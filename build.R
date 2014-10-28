@@ -1,5 +1,5 @@
 #
-#   build.R: build Harvard political contribution data from 2000 - 2014
+#   build.R: build Harvard political contribution data from raw FEC 2000 - 2014 data
 #
 
 # directory names
@@ -53,6 +53,7 @@ read.data <- function(year_dir) {
 }
 
 read.all <- function() {
+    setwd("data")
     set.headers()
     for (i in seq(14, 2, -2)) {
         year_dir <- paste(as.character(i-1), as.character(i), sep="-")
