@@ -3,7 +3,7 @@
 #
 
 # directory names
-data.path    <- "raw_data"
+raw_data.path    <- "raw_data"
 header.path  <- "header"
 # data filenames
 indiv.fname  <- "itcont.txt"
@@ -27,8 +27,9 @@ read.data <- function(year_dir) {
     ## Assumes that there exists: itcont.txt, cm.txt, cn.txt
     
     print(year_dir)
-    # move to year_dir
-    setwd(paste(data.path, year_dir, sep="/"))
+    # move to data/raw_data/year_dir
+    setwd("data")
+    setwd(paste(raw_data.path, year_dir, sep="/"))
     # read individual contribution file
     print("... read individual contributions")
     indiv_contribs <- read.table(file = "itcont.txt", header = FALSE, sep = "|", quote = "\"", comment.char = "")
@@ -48,13 +49,14 @@ read.data <- function(year_dir) {
     iccm <- merge(x = indiv_contribs, y = cm, by = "CMTE_ID", all.x = TRUE)
     iccmcn <- merge(x = iccm, y = cn, by = "CAND_ID", all.x = TRUE)
     # return to project dir
-    setwd("../../")
+    setwd("../../../")
     return(iccmcn)
 }
 
 read.all <- function() {
     setwd("data")
     set.headers()
+    # run on all raw_data folders "/XX-YY" and output "XX-YY.csv"
     for (i in seq(14, 2, -2)) {
         year_dir <- paste(as.character(i-1), as.character(i), sep="-")
         write.csv(read.data(year_dir), paste(year_dir, "csv", sep="."))
