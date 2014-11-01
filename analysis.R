@@ -61,13 +61,16 @@ hist(contribs.tagged$TRANSACTION_AMT, breaks="FD", freq=TRUE)
 # first, merge CAND and CMTE party affiliation
 # contribs.tagged$PARTY <- ifelse(!is.na(contribs.tagged$CMTE_PTY_AFFILIATION), as.character(contribs.tagged$CMTE_PTY_AFFILIATION), as.character(contribs.tagged$CAND_PTY_AFFILIATION))
 # now, look at total contributions (amt + count) per party per school
-aggregate(TRANSACTION_AMT ~ SCHOOL + PARTY, data = contribs.tagged, sum)
-aggregate(TRANSACTION_AMT ~ SCHOOL + PARTY, data = contribs.tagged, length)
+party.school.sum <- aggregate(TRANSACTION_AMT ~ PARTY + SCHOOL, data = contribs.tagged, sum); 
+party.school.freq <- aggregate(TRANSACTION_AMT ~ PARTY + SCHOOL, data = contribs.tagged, length); party.school.freq
 # now per party per school
-aggregate(TRANSACTION_AMT ~ TITLE + PARTY, data = contribs.tagged, sum)
-aggregate(TRANSACTION_AMT ~ TITLE + PARTY, data = contribs.tagged, length)
+party.title.freq <- aggregate(TRANSACTION_AMT ~ PARTY + TITLE, data = contribs.tagged, length)
+party.title.freq <- party.title.sum[order(party.title.freq$TRANSACTION_AMT, decreasing=TRUE),]; party.title.freq
+party.title.sum <- aggregate(TRANSACTION_AMT ~ PARTY + TITLE , data = contribs.tagged, sum)
+party.title.sum <- party.title.sum[order(party.title.sum$TRANSACTION_AMT, decreasing=TRUE),]; party.title.sum
+party.title.mean <- aggregate(TRANSACTION_AMT ~ PARTY + TITLE , data = contribs.tagged, mean)
+party.title.mean <- party.title.mean[order(party.title.mean$TRANSACTION_AMT, decreasing=TRUE),]; party.title.mean
 # per party per gender
-aggregate(TRANSACTION_AMT ~ GENDER + PARTY, data = contribs.tagged, sum)
-aggregate(TRANSACTION_AMT ~ GENDER + PARTY, data = contribs.tagged, legnth)
-
+party.gender.sum <- aggregate(TRANSACTION_AMT ~ PARTY + GENDER, data = contribs.tagged, sum); party.gender.sum 
+party.gender.freq <- aggregate(TRANSACTION_AMT ~ PARTY + GENDER, data = contribs.tagged, length); party.gender.freq
 
