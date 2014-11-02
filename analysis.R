@@ -2,8 +2,6 @@
 #   analysis.R: statistical analysis on political contributions of Harvard employees
 #
 
-library(plyr)
-
 # All contribution data, filtered down to Harvard employees, from 2001 - 2014
 contribs.all <- read.csv("harvard-contributions.csv")
 
