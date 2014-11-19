@@ -15,8 +15,8 @@ Analysis of the data can be found in ```analysis.R```.
 * ```harvard-people.csv```: verified Harvard contributors, with additional employement data, 2011 - 2014.  
 * ```harvard-employers.csv```: self-reported employer field values taken to fall within the scope of Harvard University. 
 
-Note: the values in ```harvard-employers.csv``` are those that were used to filter the raw FEC individual contribution data down to contributors who were or are Harvard University employees. These values are self-reported by contributors. 
+Note: the values in ```harvard-employers.csv``` are those that were used to filter the raw FEC individual contribution data down to contributors who were or are Harvard University employees. These values are self-reported by contributors, but were reduced to values that I thought were reasonably institutions within the University (as in, 'Harvard Business School,' but not 'Harvard Investment Bankers'). 
 
 #### Building From Source Data
 
-For transparency's sake, I've included the R script (```build.R```) that were used to parse and merge the raw FEC individual contribution files and filter them by Harvard employee. 
+For transparency's sake, I've included ```build.R```, the R script that were used to parse and merge the raw FEC individual contribution files and filter them by Harvard employee. It assumes that the raw FEC data, which is released in two year chunks, is organized such that the data file for 2011-2012 can be found in ```data/raw_data/11-12```, for example, and it assumes that the header files provided by the FEC are in ```data/header``` 

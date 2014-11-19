@@ -3,8 +3,8 @@
 #
 
 # directory names
-raw_data.path    <- "raw_data"
-header.path  <- "header"
+raw_data.path    <- "data/raw_data"
+header.path  <- "data/header"
 # data filenames
 indiv.fname  <- "itcont.txt"
 cm.fname     <- "cm.txt"
@@ -24,8 +24,7 @@ set.headers <- function() {
 
 read.data <- function(year_dir) {
     ## Reads political contribution from year_dir directory. 
-    ## Assumes that there exists: itcont.txt, cm.txt, cn.txt
-    
+    ## Assumes that there exists in year_dir: itcont.txt, cm.txt, cn.txt
     print(year_dir)
     # move to data/raw_data/year_dir
     setwd("data")
