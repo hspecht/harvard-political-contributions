@@ -11,7 +11,6 @@ Analysis of the data can be found in ```analysis.R```.
 #### Data
 
 * ```harvard-contributions.csv```: all Harvard political contributions, 2001 - 2014. 
-* ```harvard-contributions-tagged.csv```: Harvard political contributions, with additional employment data, 2011 - 2014. 
 * ```harvard-people.csv```: verified Harvard contributors, with additional employement data, 2011 - 2014.  
 * ```harvard-employers.csv```: self-reported employer field values taken to fall within the scope of Harvard University, 2011 - 2014. 
 
