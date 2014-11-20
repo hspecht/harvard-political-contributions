@@ -4,7 +4,7 @@
 
 This repository contains data on the political contributions of Harvard faculty, administrators, and staff between 2001 and Election Day 2014. It is derived from FEC Individual Contribution [data disclosures](http://www.fec.gov/finance/disclosure/ftpdet.shtml) over that time period. 
 
-A subset of contributors who gave between 2011 and 2014 have been manually verified as Harvard employees, and data on the gender, school, and position of those contributors is also provided. 
+A subset of contributors who gave between 2011 and 2014 have been manually verified as Harvard employees, and data on the gender, school, and position of those contributors are also provided. 
 
 Analysis of the data can be found in ```analysis.R```.
 
@@ -19,6 +19,6 @@ Note: the values in ```harvard-employers.csv``` are those that were used to filt
 
 #### Building From Source Data
 
-For transparency's sake, I've included ```build.R```, the R script that were used to parse and merge the raw FEC individual contribution files and filter them by Harvard employee. It assumes that the raw FEC data, which is released in two year chunks, is organized such that the data files for 2011-2012 can be found in ```data/raw_data/11-12```, for example, and it assumes that the header files provided by the FEC are in ```data/header```. 
+For transparency's sake, I've included ```build.R```, the R script that were used to  merge the raw FEC individual contribution files with committee and candidate information. It assumes that the raw FEC data, which is released in two year chunks, is organized such that the data file for 2011-2012 can be found in ```data/raw_data/11-12```, for example, and it assumes that the header files provided by the FEC are in ```data/header```. 
 
-You can download the raw individual contribution, committee, and candidate data [here](http://www.fec.gov/finance/disclosure/ftpdet.shtml). I didn't include them in the repo because they comprise several million rows spanning nearly 15 years.  
+You can download the raw individual contribution, committee, and candidate data [here](http://www.fec.gov/finance/disclosure/ftpdet.shtml). I didn't include it in the repository because it comprises several million rows spanning nearly 15 years.  
