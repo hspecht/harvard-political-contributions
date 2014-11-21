@@ -11,10 +11,11 @@ Analysis of the data can be found in ```analysis.R```.
 #### Data
 
 * ```harvard-contributions.csv```: all Harvard political contributions, 2001 - 2014. 
-* ```harvard-people.csv```: verified Harvard contributors, with additional employement data, 2011 - 2014.  
+* ```harvard-contributions.csv```: Harvard political contributions, tagged with employement information, 2011 - 2014. 
+* ```harvard-people.csv```: verified Harvard contributors, with additional employement information, 2011 - 2014.  
 * ```harvard-employers.csv```: self-reported employer field values taken to fall within the scope of Harvard University, 2011 - 2014. 
 
-Note: the values in ```harvard-employers.csv``` are those that were used to filter the raw FEC individual contribution data down to contributions made by those who were or are Harvard University employees. These employer values are self-reported by contributors, but were reduced to values that are institutions within the University (as in, 'Harvard Business School,' but not 'Harvard Childcare' or other employers who merely have the word 'Harvard' in their names). 
+Note: the values in ```harvard-employers.csv``` are those that were used to filter the raw FEC individual contribution data down to contributions made by those who were or are Harvard University employees. These employer values are self-reported by contributors, but were reduced to values that are institutions within the University. 
 
 #### Building From Source Data
 
