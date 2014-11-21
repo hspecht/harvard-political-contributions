@@ -21,4 +21,4 @@ Note: the values in ```harvard-employers.csv``` are those that were used to filt
 
 For transparency's sake, I've included ```build.R```, the R script that were used to  merge the raw FEC individual contribution files with committee and candidate information. It assumes that the raw FEC data, which is released in two year chunks, is organized such that the data file for 2011-2012 can be found in ```data/raw_data/11-12```, for example, and it assumes that the header files provided by the FEC are in ```data/header```. 
 
-You can download the raw individual contribution, committee, and candidate data [here](http://www.fec.gov/finance/disclosure/ftpdet.shtml). I didn't include it in the repository because it comprises several million rows spanning nearly 15 years.  
+You can download the raw individual contribution, committee, and candidate data [here](http://www.fec.gov/finance/disclosure/ftpdet.shtml). I didn't include it in the repository because it comprises at least 20 million rows of data spanning nearly 15 years.  
