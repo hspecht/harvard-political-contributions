@@ -2,8 +2,11 @@
 #   analysis.R: statistical analysis on political contributions of Harvard employees
 #
 
-# All contribution data, filtered down to Harvard employees, from 2001 - 2014
-contribs.all <- read.csv("harvard-contributions.csv")
+## Data Sets
+# all contribution data, filtered down to Harvard employees, from 2001 - 2014
+contribs <- read.csv("harvard-contributions.csv")
+people <- read.csv("people_tagged_unique.csv")  
+contribs.tagged <- read.csv("contributions_11-14_tagged.csv")
 
 # HELPER FUNCTIONS
 # show counts and percentages via contingency table
@@ -14,7 +17,6 @@ tabulate <- function(cols) {
 
 # PEOPLE
 # Unique employees who contributed between 2011 and 2014
-people <- read.csv("people_tagged_unique.csv")  
 names(people) # get a look at the columns
 nrow(people) # 1216 unique verified contributors between 2011 and 2014
 # Gender
@@ -43,7 +45,6 @@ title.gender.perc <- round(prop.table(title.gender.table, 1), 3); title.gender.p
 
 # TAGGED CONTRIBUTIONS (2011 - 2014)
 # Contribution data, tagged with gender/school/title, from 2011 - 2014
-contribs.tagged <- read.csv("contributions_11-14_tagged.csv")
 names(contribs.tagged)
 # Add a column with formatted transaction date
 contribs.tagged$DATE <- as.Date(sprintf("%08d", contribs.tagged$TRANSACTION_DT), '%m%d%Y')
