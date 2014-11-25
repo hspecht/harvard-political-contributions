@@ -11,8 +11,31 @@ Analysis of the data can be found in ```analysis.R```.
 #### Data
 
 * ```harvard-contributions.csv```: all Harvard political contributions, 2001 - 2014. 
+
+| Column Name   | Description |
+| ------------- | ------------- |
+|  |  |
+|  |  |
+|  |  |
+|  |  |
+|  |  |
+|  |  |
+|  |  |
+|  |  |
+
 * ```harvard-contributions-2011-2014-tagged.csv```: Harvard political contributions, tagged with employement information, 2011 - 2014. 
+
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
+
 * ```harvard-people.csv```: unique verified Harvard contributors, with additional employement information, 2011 - 2014.  
+
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
 
 #### Building From Source Data
 
