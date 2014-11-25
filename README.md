@@ -14,8 +14,6 @@ Analysis of the data can be found in ```analysis.R```.
 * ```harvard-contributions-2011-2014-tagged.csv```: Harvard political contributions, tagged with employement information, 2011 - 2014. 
 * ```harvard-people.csv```: unique verified Harvard contributors, with additional employement information, 2011 - 2014.  
 
-Note: the values in ```harvard-employers.csv``` are those that were used to filter the raw FEC individual contribution data down to contributions made by those who were or are Harvard University employees. These employer values are self-reported by contributors, but were reduced to values that are institutions within the University. 
-
 #### Building From Source Data
 
 For transparency's sake, I've included ```build.R```, the R script that were used to  merge the raw FEC individual contribution files with committee and candidate information. It assumes that the raw FEC data, which is released in two year chunks, is organized such that the data file for 2011-2012 can be found in ```data/raw_data/11-12```, for example, and it assumes that the header files provided by the FEC are in ```data/header```. 
