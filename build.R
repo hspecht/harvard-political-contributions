@@ -56,8 +56,8 @@ read.data <- function(year_dir) {
 }
 
 read.all <- function() {
-    set.headers()
     # run on all raw_data folders "/XX-YY" and output "XX-YY.csv"
+    set.headers()
     for (i in seq(14, 2, -2)) {
         year_dir <- paste(as.character(i-1), as.character(i), sep="-")
         write.csv(read.data(year_dir), paste(year_dir, "csv", sep="."))
@@ -65,9 +65,8 @@ read.all <- function() {
 }
 
 filter.employer <- function(csv_data){
+    employers <- read.csv("employer.csv")
     setwd(data.path)
     setwd("intermediary_data")
-    employers <- read.csv("employer.csv")
-    setwd("../../")
     return(csv_data[which(csv_data$EMPLOYER %in% employers),])
 }

@@ -6,7 +6,7 @@
 # all contribution data, filtered down to Harvard employees, from 2001 - 2014
 contribs <- read.csv("harvard-contributions.csv")
 people <- read.csv("people_tagged_unique.csv")  
-contribs.tagged <- read.csv("contributions_11-14_tagged.csv")
+contribs.tagged <- read.csv("harvard-contributions-2011-2014-tagged.csv")
 
 # HELPER FUNCTIONS
 # show counts and percentages via contingency table
@@ -22,13 +22,16 @@ nrow(people) # 1216 unique verified contributors between 2011 and 2014
 # Gender
 # 457 F, 756 M
 # 38% F, 62% M
-tabulate(people$GENDER)
+table(people$GENDER)
+round(prop.table(table(people$GENDER)), 3)
 # School
 # 25% in FAS, 15% in HLS, HMS, HBS, 7% in SPH
-tabulate(people$SCHOOL)
+table(people$SCHOOL)
+round(prop.table(table(people$SCHOOL)), 3)
 # Title
 # 46% professors, 22% administrators, 26 Univ. professors
-tabulate(people$TITLE)
+table(people$TITLE)
+round(prop.table(table(people$TITLE)), 3)
 # School vs. Gender
 school.gender.table <- table(people$SCHOOL, people$GENDER); school.gender.table
 school.gender.perc <- round(prop.table(school.gender.table, 1), 3); school.gender.perc
