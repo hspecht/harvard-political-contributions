@@ -14,28 +14,28 @@ Analysis of the data can be found in ```analysis.R```.
 
 | Column Name   | Description |
 | ------------- | ------------- |
-|  |  |
-|  |  |
-|  |  |
-|  |  |
-|  |  |
-|  |  |
-|  |  |
-|  |  |
-
-* ```harvard-contributions-2011-2014-tagged.csv```: Harvard political contributions, tagged with employement information, 2011 - 2014. 
-
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
+|  NAME |  |
+|  ZIP_CODE |  |
+|  EMPLOYER |  |
+|  OCCUPATION |  |
+|  TRANSACTION_DT |  |
+|  TRANSACTION_PGI |  |
+| TRANSACTION_AMT |  |
+|  CMTE_NM |  |
+| CMTE_DSGN |  |
+| PARTY |  |
+|  CMTE_TP |  |
 
 * ```harvard-people.csv```: unique verified Harvard contributors, with additional employement information, 2011 - 2014.  
 
-| First Header  | Second Header |
+| Column Name  | Description |
 | ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
+| NAME | | 
+| GENDER | | 
+| SCHOOL | | 
+| TITLE | | 
+
+* ```harvard-contributions-2011-2014-tagged.csv```: Harvard political contributions, tagged with employement information, 2011 - 2014. The column names for this file are just the union of those from ```harvard-people.csv``` and ```harvard-contributions.csv```.
 
 #### Building From Source Data
 
