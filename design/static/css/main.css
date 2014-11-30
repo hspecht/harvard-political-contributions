@@ -1,19 +1,29 @@
-.wrapper {
-    margin-left: 50px;
+html, body, div, h1, h2, h3, h4, 
+h5, h6, p, blockquote, pre,
+a, img, b, u, i {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
 }
 
 header {
-    position: fixed;
+    height: 30px;
+    width: 100%;
+    padding: 4px 0 4px 0 ; 
     top: 0;
     left: 0;
     right: 0;
     background: rgba(46,46,46,0.95);
-    z-index: 300;
 }
 
 .header-logo, .header-logo:hover {
+    margin-left: 50px;
     float: left;
-    padding: 3px 0 9px;
+    padding: 5px 0 12px 0 ;
     text-decoration: none;
 }
 
@@ -21,9 +31,70 @@ header {
     vertical-align: middle;
 }
 
-header h1 {
-    font-family: 'Crimson';
-    font-size: 20px;
+main {
+    margin: 35px 5% 30px 5%;
+}
+
+#cover {
+    position: relative;
+    width: 100%; /* for IE6 */
+}
+
+#cover-img {
+    z-index: -1;
+    position: relative;
+    height: 350px;
+    overflow: hidden;
+    background-image: url('../img/cover.jpg');
+}
+
+#cover img {
+    position: absolute;
+    width: 100%; 
+    min-width: 800px;
+    bottom: -50px;
+    left: 0;
+}
+
+#cover-text {
+    position: absolute;
+    top: 40%; left: 10%; bottom: 0; right: 0;
+    width: 450px
+}
+
+#cover-title {
+    font-family: 'Droid Serif', serif;
     color: white;
-    margin: 0 auto;
+    font-size: 60px;
+}
+
+#cover-subtitle {
+    background-color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 20px;
+    padding: 7px; 
+    margin-top: 10px; 
+}
+
+#subtitle-and {
+    display: inline;
+    font-size: 15px;
+}
+
+#cover-byline {
+    font-family: 'Open Sans', sans-serif;
+    font-size:11px;
+    font-weight: 400;
+    float: right;
+}
+
+#cover-byline a{
+    color: inherit; 
+}
+
+#photo-title{
+    font-weight: 300;
+    display: inline;
 }
