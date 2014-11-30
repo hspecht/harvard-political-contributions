@@ -1,5 +1,7 @@
 ### Harvard Political Contributions
 
+![Harvard Political Contributions, Totals by Month](http://i.imgur.com/MBSzfe5.jpg)
+
 #### About
 
 This repository contains data on the political contributions of Harvard faculty, administrators, and staff between 2001 and Election Day 2014. It is derived from FEC Individual Contribution [data disclosures](http://www.fec.gov/finance/disclosure/ftpdet.shtml) over that time period. 
