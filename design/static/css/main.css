@@ -66,6 +66,7 @@ main {
     font-family: 'Droid Serif', serif;
     color: white;
     font-size: 60px;
+    font-weight: 700;
 }
 
 #cover-subtitle {
@@ -78,11 +79,6 @@ main {
     margin-top: 10px; 
 }
 
-#subtitle-and {
-    display: inline;
-    font-size: 15px;
-}
-
 #cover-byline {
     font-family: 'Open Sans', sans-serif;
     font-size:11px;
@@ -90,11 +86,46 @@ main {
     float: right;
 }
 
-#cover-byline a{
+#cover-byline a {
     color: inherit; 
 }
 
-#photo-title{
+#photo-title {
     font-weight: 300;
     display: inline;
+}
+
+#photo-title {
+    font-weight: 300;
+    display: inline;
+}
+
+#article, #byline {
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+#byline {
+    background-color: black;
+    color: white;
+    margin-top: 35px;
+    margin-bottom: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 3px 5px 3px 5px;
+    display: inline-block;
+}
+
+#byline a {
+    font-weight: 700;
+    font-style: italic;
+    color: inherit; 
+    text-decoration: none;
+}
+
+#article p {
+    font-family: 'Droid Serif', serif;
+    font-weight: 400;
+    letter-spacing: 0px;
 }
