@@ -25,8 +25,9 @@ contribs$YEARMON <- as.yearmon(contribs$TRANSACTION_DT)
 # UNK contributions are to Women's Campaign Party = non-partisan
 # contribs[which(contribs$PARTY == "UNK"),]
 # DFL is affiliated with DEM, so we merge them
+# NA = not affiliated
 levels(contribs$PARTY)
-levels(contribs$PARTY) <- c("DEM", "DEM", "GRE", "IND", "NP", "REP", "NP", "NP")
+levels(contribs$PARTY) <- c("DEM", "DEM", "GRE", "IND", "NA", "REP", "NA", "NA")
 levels(contribs$PARTY)
 # breakdown sum/median of donations by party by month
 d <- as.data.frame(as.list(aggregate(TRANSACTION_AMT ~ PARTY + YEARMON, data = contribs, sum)))
@@ -36,10 +37,22 @@ m1.rm <- t(m1); m1.rm[,1:5] <- rbind(rbind(rep(0, 5), rollmean(t(m1), 3)), rep(0
 barplot(m1, col=c("blue", "green", "yellow", "grey", "red"), main="Harvard Political Contributions, 2011-2014:\n Total Contributions, by Month",
         xlab="Date", ylab="Amount (USD)", xpd=FALSE, border=TRUE)
 legend('topright', legend=row.names(m1), fill=c("blue", "green", "yellow", "grey", "red"))
-# add lines for elections months - day doesn't matter because smallest unit is month
-elections.pres <- as.yearmon(as.Date(c("01 Nov 2004", "01 Nov 2008", "01 Nov 2012"), format="%d %b %Y"))
-elections.mid <- as.yearmon(as.Date(c("01 Nov 2002", "01 Nov 2006", "01 Nov 2010", "1 Nov 2014"), , format="%d %b %Y"))
-abline(v=elections.pres, col="darkorchid4"); abline(v=elections.mid, col="darkorchid1")
+# party
+parties <- aggregate(TRANSACTION_AMT ~ PARTY, data=contribs, sum)
+parties <- parties[order(-parties$TRANSACTION_AMT),]; parties
+# top donation recipients
+top_recipients <- aggregate(TRANSACTION_AMT ~ CMTE_NM + PARTY, data=contribs, sum)
+top_recipients <- top_recipients[order(-top_recipients$TRANSACTION_AMT),]
+head(top_recipients, n = 20)
+# top donors
+top_donors <- aggregate(TRANSACTION_AMT ~ NAME, data=contribs, sum)
+top_donors <- top_donors[order(-top_donors$TRANSACTION_AMT),]
+top_donors.party <- aggregate(TRANSACTION_AMT ~ PARTY + NAME, data=contribs, sum)
+top_donors.party <- top_donors.party[order(-top_donors.party$TRANSACTION_AMT),]
+head(top_donors, n = 20); head(top_donors.party, n = 20)
+summary(top_donors$TRANSACTION_AMT)
+table(head(top_donors.party$PARTY, n = 100))
+
 
 # PEOPLE
 # Unique employees who contributed between 2011 and 2014
