@@ -44,14 +44,16 @@ parties <- parties[order(-parties$TRANSACTION_AMT),]; parties
 top_recipients <- aggregate(TRANSACTION_AMT ~ CMTE_NM + PARTY, data=contribs, sum)
 top_recipients <- top_recipients[order(-top_recipients$TRANSACTION_AMT),]
 head(top_recipients, n = 20)
-# top donors
-top_donors <- aggregate(TRANSACTION_AMT ~ NAME, data=contribs, sum)
-top_donors <- top_donors[order(-top_donors$TRANSACTION_AMT),]
-top_donors.party <- aggregate(TRANSACTION_AMT ~ PARTY + NAME, data=contribs, sum)
-top_donors.party <- top_donors.party[order(-top_donors.party$TRANSACTION_AMT),]
-head(top_donors, n = 20); head(top_donors.party, n = 20)
-summary(top_donors$TRANSACTION_AMT)
-table(head(top_donors.party$PARTY, n = 100))
+# donors
+donors <- aggregate(TRANSACTION_AMT ~ NAME, data=contribs, sum)
+donors <- donors[order(-top_donors$TRANSACTION_AMT),]
+donors$bins <- cut(donors$TRANSACTION_AMT, breaks=c(seq(0, 20000, 1000), 50000, 100000, Inf))
+barplot(table(donors$bins))
+donors.party <- aggregate(TRANSACTION_AMT ~ PARTY + NAME, data=contribs, sum)
+donors.party <- donors.party[order(-top_donors.party$TRANSACTION_AMT),]
+head(donors, n = 20); head(donors.party, n = 20)
+summary(donors$TRANSACTION_AMT)
+table(head(donors.party$PARTY, n = 100))
 
 
 # PEOPLE
@@ -94,7 +96,7 @@ contribs.tagged$TRANSACTION_DT <- as.Date(sprintf("%08d", contribs.tagged$TRANSA
 # contributions between 01-04-2011 and 10-15-2014
 summary(contribs.tagged$TRANSACTION_DT)
 # only 47 contributions greater than $5000
-hist(contribs.tagged$TRANSACTION_AMT, breaks="FD", freq=TRUE)
+2hist(contribs.tagged$TRANSACTION_AMT, breaks="FD", freq=TRUE)
 # let's break it down by school
 # first, merge CAND and CMTE party affiliation to get party
 #contribs.tagged$PARTY <- ifelse(!(contribs.tagged$CMTE_PTY_AFFILIATION == ""), as.character(contribs.tagged$CMTE_PTY_AFFILIATION), as.character(contribs.tagged$CAND_PTY_AFFILIATION))
