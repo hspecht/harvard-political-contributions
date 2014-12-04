@@ -46,16 +46,15 @@ top_recipients <- top_recipients[order(-top_recipients$TRANSACTION_AMT),]
 head(top_recipients, n = 20)
 # donors
 donors <- aggregate(TRANSACTION_AMT ~ NAME, data=contribs, sum)
-donors <- donors[order(-top_donors$TRANSACTION_AMT),]
-donors$bins <- cut(donors$TRANSACTION_AMT, breaks=c(seq(0, 20000, 1000), 50000, 100000, Inf))
-barplot(table(donors$bins))
+donors <- donors[order(-donors$TRANSACTION_AMT),]
+#donors$bins <- cut(donors$TRANSACTION_AMT, breaks=c(seq(0, 20000, 1000), 50000, 100000, Inf))
+#barplot(table(donors$bins))
 donors.party <- aggregate(TRANSACTION_AMT ~ PARTY + NAME, data=contribs, sum)
-donors.party <- donors.party[order(-top_donors.party$TRANSACTION_AMT),]
+donors.party <- donors.party[order(-donors.party$TRANSACTION_AMT),]
 head(donors, n = 20); head(donors.party, n = 20)
 summary(donors$TRANSACTION_AMT)
 table(head(donors.party$PARTY, n = 100))
-
-
+write.csv(donors, "donors.csv")
 # PEOPLE
 # Unique employees who contributed between 2011 and 2014
 nrow(people) # 913 unique verified contributors between 2011 and 2014
@@ -88,15 +87,46 @@ title.gender.perc <- round(prop.table(title.gender.table, 1), 3); title.gender.p
 # TAGGED CONTRIBUTIONS (2011 - 2014)
 # Contribution data, tagged with gender/school/title, from 2011 - 2014
 names(contribs.tagged)
-# add level merges for SCHOOL from people data frame
-levels(contribs.tagged$SCHOOL) <- c("CADM","FAS","OTHER","GSE","OTHER","HBS","HKS","HLS","HMC",
-                                    "HMS","OTHER","OTHER","OTHER","SEAS","SPH","OTHER")
-# Add a column with formatted transaction date
-contribs.tagged$TRANSACTION_DT <- as.Date(sprintf("%08d", contribs.tagged$TRANSACTION_DT), '%m%d%Y')
+contribs.tagged$TRANSACTION_DT <- as.Date(contribs.tagged$TRANSACTION_DT)
+# add a column for year-month
+contribs.tagged$YEARMON <- as.yearmon(contribs.tagged$TRANSACTION_DT) 
+# DEM = Democratic, REP = Republican, DFL = Democratic-Farmer-Labor, GRE = Green
+# IND = Independent, NNE = None, UNK = Unknown
+# UNK contributions are to Women's Campaign Party = non-partisan
+# contribs[which(contribs$PARTY == "UNK"),]
+# DFL is affiliated with DEM, so we merge them
+# NA = not affiliated
+contribs.tagged$PARTY <- contribs.tagged$CMTE_PTY_AFFILIATION
+levels(contribs.tagged$PARTY)
+levels(contribs.tagged$PARTY) <- c("DEM", "DEM", "GRE", "IND", "NA", "REP")
+levels(contribs.tagged$PARTY)
+# merge schools
+levels(contribs.tagged$SCHOOL)
+levels(contribs.tagged$SCHOOL) <- c("CADM", "FAS", "GSD", "GSE", "OTHER", "HBS", "HKS", "HLS", "HMC", "HMS", "OTHER", "OTHER", "OTHER", "SEAS", "SPH", "OTHER")
+levels(contribs.tagged$SCHOOL)
+
+d<- aggregate(TRANSACTION_AMT ~ PARTY + SCHOOL, data = contribs.tagged, sum); d
+m1 <- acast(d, PARTY~SCHOOL, value.var='TRANSACTION_AMT', fill=0)
+m1 <- m1[c(0,1,5),]
+barplot(m1, col=c("blue", "red"), legend=rownames(m1), xlab="School", ylab="Amount (USD)", 
+        main="Harvard Political Contributions, 2011 - 2014 \n Total Contributions, By School", xpd=FALSE, border=TRUE, beside=TRUE)
+
+d<- aggregate(TRANSACTION_AMT ~ PARTY + GENDER, data = contribs.tagged, sum); d
+m1 <- acast(d, PARTY~GENDER, value.var='TRANSACTION_AMT', fill=0)
+barplot(m1, col=c("blue", "green", "yellow", "grey", "red"), legend=rownames(m1), xlab="GENDER", ylab="Amount (USD)", xpd=FALSE, border=TRUE, beside=TRUE)
+
+d<- aggregate(TRANSACTION_AMT ~ PARTY + TITLE, data = contribs.tagged, sum);
+m1 <- acast(d, PARTY~TITLE, value.var='TRANSACTION_AMT', fill=0)
+m2 <- m1[,c( 3, 10, 11, 15, 16, 21, 24, 29)]
+m2 <- m2[c(0,1,5),]
+barplot(m2, cex.names=.7, col=c("blue", "red"), legend=rownames(m2), xlab="Title", ylab="Amount (USD)", 
+        main="Harvard Political Contributions, 2011 - 2014 \n Total Contributions, By Position", xpd=FALSE, border=TRUE, beside=TRUE)
+
+
 # contributions between 01-04-2011 and 10-15-2014
 summary(contribs.tagged$TRANSACTION_DT)
 # only 47 contributions greater than $5000
-2hist(contribs.tagged$TRANSACTION_AMT, breaks="FD", freq=TRUE)
+hist(contribs.tagged$TRANSACTION_AMT, breaks="FD", freq=TRUE)
 # let's break it down by school
 # first, merge CAND and CMTE party affiliation to get party
 #contribs.tagged$PARTY <- ifelse(!(contribs.tagged$CMTE_PTY_AFFILIATION == ""), as.character(contribs.tagged$CMTE_PTY_AFFILIATION), as.character(contribs.tagged$CAND_PTY_AFFILIATION))
